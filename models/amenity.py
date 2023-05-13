@@ -1,17 +1,14 @@
 #!/usr/bin/python3
 '''
-module user
+module amenity
 '''
 
 from models.base_model import BaseModel
 
 
-class User(BaseModel):
-    '''class User'''
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
+class Amenity(BaseModel):
+    '''class Amenity'''
+    name = ''
 
     def __init__(self, *args, **kwargs):
         '''Constructor'''

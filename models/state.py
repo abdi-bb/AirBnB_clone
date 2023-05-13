@@ -1,18 +1,15 @@
 #!/usr/bin/python3
 '''
-module user
+module state
 '''
 
 from models.base_model import BaseModel
 
 
-class User(BaseModel):
-    '''class User'''
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
+class State(BaseModel):
+    '''class State'''
+    name = ''
 
     def __init__(self, *args, **kwargs):
-        '''Constructor'''
+        '''Instantiation of class State'''
         super().__init__(*args, **kwargs)

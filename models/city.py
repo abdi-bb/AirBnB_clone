@@ -1,17 +1,15 @@
 #!/usr/bin/python3
 '''
-module user
+module city
 '''
 
 from models.base_model import BaseModel
 
 
-class User(BaseModel):
-    '''class User'''
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
+class City(BaseModel):
+    '''class City'''
+    state_id = ''
+    name = ''
 
     def __init__(self, *args, **kwargs):
         '''Constructor'''
