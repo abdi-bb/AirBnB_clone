@@ -11,14 +11,22 @@ from uuid import uuid4
 class BaseModel:
     """A Parent Base Model Class"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """A Method that initializes
         everytime object is created
         """
 
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        if not kwargs:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+        else:
+            a = '%Y-%m-%dT%H:%M:%S.%f'
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key in ('created_at', 'updated_at'):
+                        value = datetime.strptime(v, a)
+                    setattr(self, key, value)
 
     def __str__(self):
         """A Method to return a dictionary
