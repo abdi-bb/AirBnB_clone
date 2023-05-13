@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""
-A Console Module
-"""
-
+'''
+Command Interpreter module
+module: console
+class: HBNBCommand
+'''
 
 import cmd
 import models
@@ -17,68 +18,67 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """A Command Processor Class"""
+    '''Command Interpreter class'''
 
     prompt = '(hbnb) '
     all_cls = [BaseModel, User, State, City, Amenity, Place, Review]
 
     def do_quit(self, line):
-        """Quit command to exit the program"""
+        '''Quit command to exit the program
 
+        '''
         return True
 
     def do_EOF(self, line):
-        """EOF command to exit the program"""
+        '''EOF command to exit the program
 
+        '''
         print()
         return True
 
     def emptyline(self):
-        """Do nothing if empty line"""
-
+        """Do nothing if line empty"""
         pass
 
     def do_create(self, line):
-        """Create an Object"""
+        """Creates a new Object"""
 
         args = line.split()
         if len(args) == 0:
-            print("** class name missing **")
+            print('** class name missing **')
             return
         try:
             class_name = args[0]
             if class_name not in [c.__name__ for c in HBNBCommand.all_cls]:
                 print("** class doesn't exist **")
                 return
-            else:
-                obj = eval(class_name)()
-                obj.save()
-                print(obj.id)
+            obj = eval(class_name)()
+            obj.save()
+            print(obj.id)
         except Exception as e:
             print(e)
 
     def do_show(self, line):
-        """Shows an Object"""
+        """Show all Objects"""
 
         args = line.split()
         if len(args) == 0:
-            print("** class name missing **")
+            print('** class name missing **')
             return
         try:
             class_name = args[0]
             if class_name not in [c.__name__ for c in HBNBCommand.all_cls]:
                 print("** class doesn't exist **")
-                return
-            obj_id = args[1]
-            if len(args) == 1:
+            elif len(args) == 1:
                 print("** instance id missing **")
             else:
+                obj_id = args[1]
                 key = '{}.{}'.format(class_name, obj_id)
-                objs = models.storage.all()
-                if key in objs:
-                    print(objs[key])
+                objects = models.storage.all()
+                if key in objects:
+                    print(objects[key])
                 else:
-                    print("** no instance found **")
+                    print('** no instance found **')
         except Exception as e:
             print(e)
 
@@ -87,30 +87,33 @@ class HBNBCommand(cmd.Cmd):
 
         args = line.split()
         if len(args) == 0:
-            print("** class name missing **")
+            print('** class name missing **')
             return
+
+        class_name = args[0]
+        if class_name not in [c.__name__ for c in HBNBCommand.all_cls]:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+            return
+
+        objects = models.storage.all()
         try:
-            if args[0] not in [c.__name__ for c in HBNBCommand.all_cls]:
-                print("** class doesn't exist **")
-                return
-            else:
-                objs = models.storage.all()
-                for key, value in objs.items():
-                    class_name = value.__class__.__name__
-                    class_id = value.id
-                    if class_name == args[0] and class_id == args[1]:
-                        del value
-                        del objs[key]
-                        models.storage.save()
-                        return
-                print("** no instance found **")
-        except Exception as e:
-            print(e)
+            obj_id = args[1]
+            key = '{}.{}'.format(class_name, obj_id)
+            obj = objects[key]
+        except (KeyError, IndexError):
+            print('** no instance found **')
+            return
+
+        del objects[key]
+        models.storage.save()
 
     def do_all(self, arg):
         """
-        Prints all Objects
+        Prints all Objects.
         """
+
         if not arg:
             objs = models.storage.all().values()
         else:
@@ -125,6 +128,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """Update an instance based on the class name and id"""
+
         if not line:
             print("** class name missing **")
             return
