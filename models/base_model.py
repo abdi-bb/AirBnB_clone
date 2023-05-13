@@ -18,7 +18,7 @@ class BaseModel:
 
         if not kwargs:
             self.name = "Danny"
-            sef.my_number = '2023'
+            self.my_number = '2023'
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
