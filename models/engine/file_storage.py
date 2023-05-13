@@ -19,7 +19,7 @@ class FileStorage():
 
     def new(self, obj):
         '''assigns obj to __objects at key <obj class name>.id'''
-        if obj is None:
+        if obj is not None:
             key = f'{obj.__class__.__name__}.{obj.id}'
             FileStorage.__objects[key] = obj
 
