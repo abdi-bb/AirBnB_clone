@@ -45,9 +45,12 @@ class FileStorage():
             with open(FileStorage.__file_path, 'r') as f:
                 obj_dict = json.load(f)
                 for key, value in obj_dict.items():
-                    class_name, obj_id = key.split('.')
-                    value['__class__'] = class_name
+                    if '.' in str(key):
+                        class_name, obj_id = key.split('.')
+                    else:
+                        class_name = value['__class__']
+                    del value['__class__']
                     obj = eval(class_name)(**value)
                     FileStorage.__objects[key] = obj
-        except (ValueError, FileNotFoundError):
+        except (ValueError, FileNotFoundError, NameError):
             pass
