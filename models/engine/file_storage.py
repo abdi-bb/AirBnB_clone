@@ -26,13 +26,13 @@ class FileStorage():
 
     def new(self, obj):
         '''assigns obj to __objects at key <obj class name>.id'''
-        tmp = None
-        if obj != tmp:
-            try:
+        try:
+            tmp = None
+            if obj != tmp:
                 key = f'{obj.__class__.__name__}.{obj.id}'
                 FileStorage.__objects[key] = obj
-            except AttributeError:
-                pass
+        except AttributeError:
+            pass
 
     def save(self):
         '''serializes __objects to json'''
