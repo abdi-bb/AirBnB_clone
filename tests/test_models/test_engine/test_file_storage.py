@@ -21,6 +21,8 @@ class TestAll(unittest.TestCase):
     '''class TestAll to test the 'all' method'''
 
     def test_all_return_type(self):
+        """Test all return types"""
+
         fs = FileStorage()
         all_objs = fs.all()
         self.assertIsInstance(all_objs, dict)
@@ -30,6 +32,8 @@ class TestNew(unittest.TestCase):
     '''class TestNew to test the 'new' method'''
 
     def test_new_adds_object(self):
+        """Test new added objs"""
+
         fs = FileStorage()
         obj = User()
         fs.new(obj)
@@ -37,6 +41,8 @@ class TestNew(unittest.TestCase):
         self.assertIn(key, fs.all())
 
     def test_new_skips_none(self):
+        """Test new skips"""
+
         fs = FileStorage()
         before = fs.all()
         fs.new(None)
@@ -54,6 +60,8 @@ class TestSave(unittest.TestCase):
             self.assertEqual(f.read(), '{}')'''
 
     def test_save_updates_file(self):
+        """Test updated files"""
+
         fs = FileStorage()
         obj = State()
         fs.new(obj)
@@ -66,6 +74,8 @@ class TestReload(unittest.TestCase):
     '''class TestReload to test the 'reload' method'''
 
     def test_reload_from_existing_file(self):
+        """Test reload from a file"""
+
         fs = FileStorage()
         obj = User()
         fs.new(obj)
@@ -75,6 +85,8 @@ class TestReload(unittest.TestCase):
         self.assertIn(key, fs.all())
 
     def test_reload_without_file(self):
+        """Test reload without files"""
+
         fs = FileStorage()
         os.remove(fs._FileStorage__file_path)
         try:
@@ -84,6 +96,8 @@ class TestReload(unittest.TestCase):
             self.fail(s)
 
     def test_reload_with_invalid_data(self):
+        """Test reload with invalid data"""
+
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
             f.write(
@@ -96,6 +110,8 @@ class TestReload(unittest.TestCase):
             self.fail("reload unexpectedly raised NameError!")
 
     def test_reload_with_invalid_class(self):
+        """Test reload with invalid class"""
+
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
             f.write(
@@ -108,6 +124,8 @@ class TestReload(unittest.TestCase):
             self.fail("reload method raised NameError unexpectedly")
 
     def test_reload_with_invalid_id(self):
+        """Test reload with invalid id"""
+
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
             f.write(
@@ -120,6 +138,8 @@ class TestReload(unittest.TestCase):
             self.fail("reload method raised ValueError unexpectedly")
 
     def test_reload_with_missing_attribute(self):
+        """Test reload without attributes"""
+
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
             f.write(
@@ -132,6 +152,8 @@ class TestReload(unittest.TestCase):
             self.fail("reload method raised TypeError unexpectedly")
 
     def test_reload_with_valid_data(self):
+        """Test reload with valid data"""
+
         fs = FileStorage()
         obj = User()
         fs.new(obj)
