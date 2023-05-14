@@ -36,5 +36,6 @@ class StateTest(unittest.TestCase):
         s = State()
         self.assertEqual(str(type(s)), "<class 'models.state.State'>")
 
+
 if __name__ == '__main__':
     unittest.main()
