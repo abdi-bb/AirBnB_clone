@@ -37,11 +37,15 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """Do nothing if line empty"""
+        """Do nothing if line empty
+
+        """
         pass
 
     def do_create(self, line):
-        """Creates a new Object"""
+        """Creates a new Object
+
+        """
 
         args = line.split()
         if len(args) == 0:
@@ -59,7 +63,9 @@ class HBNBCommand(cmd.Cmd):
             print(e)
 
     def do_show(self, line):
-        """Show all Objects"""
+        """Show all Objects
+
+        """
 
         args = line.split()
         if len(args) == 0:
@@ -83,7 +89,9 @@ class HBNBCommand(cmd.Cmd):
             print(e)
 
     def do_destroy(self, line):
-        """Destroy an Object"""
+        """Destroy an Object
+
+        """
 
         args = line.split()
         if len(args) == 0:
@@ -109,16 +117,16 @@ class HBNBCommand(cmd.Cmd):
         del objects[key]
         models.storage.save()
 
-    def do_all(self, arg):
-        """
-        Prints all Objects.
+    def do_all(self, line):
+        """Prints all Objects.
+
         """
 
-        if not arg:
+        if not line:
             objs = models.storage.all().values()
         else:
             try:
-                cls = eval(arg)
+                cls = eval(line)
                 objs = [obj for obj in models.storage.all().values()
                         if type(obj) == cls]
             except NameError:
@@ -127,7 +135,9 @@ class HBNBCommand(cmd.Cmd):
         print([str(obj) for obj in objs])
 
     def do_update(self, line):
-        """Update an instance based on the class name and id"""
+        """Update an instance based on the class name and id
+
+        """
 
         if not line:
             print("** class name missing **")
