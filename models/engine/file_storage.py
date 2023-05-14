@@ -47,5 +47,5 @@ class FileStorage():
                     value['__class__'] = class_name
                     obj = eval(class_name)(**value)
                     FileStorage.__objects[key] = obj
-        except (FileNotFoundError, ValueError, NameError):
+        except FileNotFoundError:
             pass
