@@ -4,7 +4,7 @@ Test for User class
 """
 
 
-import unitttest
+import unittest
 from models.user import User
 from datetime import datetime
 
@@ -16,28 +16,31 @@ class UserTest(unittest.TestCase):
         """Test if attributes exist"""
 
         u = User()
-        self.assertTrue(hasattr(self.u, 'id'))
-        self.assertTrue(hasattr(self.u, 'first_name'))
-        self.assertTrue(hasattr(self.u, 'last_name'))
-        self.assertTrue(hasattr(self.u, 'email'))
-        self.assertTrue(hasattr(self.u, 'password'))
-        self.assertTrue(hasattr(self.u, 'created_at'))
-        self.assertTrue(hasattr(self.u, 'updated_at'))
+        self.assertTrue(hasattr(u, 'id'))
+        self.assertTrue(hasattr(u, 'first_name'))
+        self.assertTrue(hasattr(u, 'last_name'))
+        self.assertTrue(hasattr(u, 'email'))
+        self.assertTrue(hasattr(u, 'password'))
+        self.assertTrue(hasattr(u, 'created_at'))
+        self.assertTrue(hasattr(u, 'updated_at'))
 
     def test_attr_types(self):
         """Test the Types of the attributes"""
 
         u = User()
-        self.assertIsInstance(self.u.id, str)
-        self.assertIsInstance(self.u.first_name, str)
-        self.assertIsInstance(self.u.last_name, str)
-        self.assertIsInstance(self.u.email, str)
-        self.assertIsInstance(slef.u.password, str)
-        self.assertIsInstance(self.u.created_at, datetime)
-        self.assertIsInstance(self.u.updated_at, datetime)
+        self.assertIsInstance(u.id, str)
+        self.assertIsInstance(u.first_name, str)
+        self.assertIsInstance(u.last_name, str)
+        self.assertIsInstance(u.email, str)
+        self.assertIsInstance(u.password, str)
+        self.assertIsInstance(u.created_at, datetime)
+        self.assertIsInstance(u.updated_at, datetime)
 
     def test_class_exist(self):
         """Test if the Class Exists"""
 
         u = User()
-        self.assertEqual(str(type(self.u)), "<class 'models.user.User'>")
+        self.assertEqual(str(type(u)), "<class 'models.user.User'>")
+
+if __name__ == '__main__':
+    unittest.main()
