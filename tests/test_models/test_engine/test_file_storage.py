@@ -85,8 +85,7 @@ class TestReload(unittest.TestCase):
     def test_reload_with_invalid_data(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"invalid_key": {
-                    "__class__": "InvalidClass", "id": "123"}}')
+            f.write('{"badkey": {"__class__": "badCls", "id": "123"}}')
         try:
             fs.reload()
         except NameError:
@@ -95,8 +94,7 @@ class TestReload(unittest.TestCase):
     def test_reload_with_invalid_class(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"invalid_key": {
-                    "__class__": "InvalidClass", "id": "123"}}')
+            f.write('{"badkey": {"__class__": "badCls", "id": "123"}}')
         try:
             fs.reload()
         except NameError:
@@ -105,8 +103,7 @@ class TestReload(unittest.TestCase):
     def test_reload_with_invalid_id(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"User.invalid_id": {
-                    "__class__": "User", "invalid_key": "invalid_value"}}')
+            f.write('{"User.badId": {"__class__": "User", "badk": "badv"}}')
         try:
             fs.reload()
         except ValueError:
@@ -115,8 +112,7 @@ class TestReload(unittest.TestCase):
     def test_reload_with_missing_attribute(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"User.missing_attribute": {
-                    "__class__": "User", "id": "123"}}')
+            f.write('{"User.noAttribute": {"__class__": "User", "id": "123"}}')
         try:
             fs.reload()
         except TypeError:
