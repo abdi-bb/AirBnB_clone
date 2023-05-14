@@ -80,12 +80,16 @@ class TestReload(unittest.TestCase):
         try:
             fs.reload()
         except FileNotFoundError:
-            self.fail("reload method raised FileNotFoundError unexpectedly")
+            s = "reload method raised FileNotFoundError unexpectedly"
+            self.fail(s)
 
     def test_reload_with_invalid_data(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"invalid_key": {"__class__": "InvalidClass", "id": "123"}}')
+            f.write(
+                    '{"invalid_key": {"__class__": "InvalidClass",'
+                    '"id": "123"}}'
+                    )
         try:
             fs.reload()
         except NameError:
@@ -94,7 +98,10 @@ class TestReload(unittest.TestCase):
     def test_reload_with_invalid_class(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"invalid_key": {"__class__": "InvalidClass", "id": "123"}}')
+            f.write(
+                    '{"invalid_key": {"__class__": "InvalidClass",'
+                    '"id": "123"}}'
+                    )
         try:
             fs.reload()
         except NameError:
@@ -103,7 +110,10 @@ class TestReload(unittest.TestCase):
     def test_reload_with_invalid_id(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"User.invalid_id": {"__class__": "User", "invalid_key": "invalid_value"}}')
+            f.write(
+                    '{"User.invalid_id": {"__class__": "User", '
+                    '"invalid_key": "invalid_value"}}'
+                    )
         try:
             fs.reload()
         except ValueError:
@@ -112,7 +122,10 @@ class TestReload(unittest.TestCase):
     def test_reload_with_missing_attribute(self):
         fs = FileStorage()
         with open(fs._FileStorage__file_path, 'w') as f:
-            f.write('{"User.missing_attribute": {"__class__": "User", "id": "123"}}')
+            f.write(
+                    '{"User.missing_attribute": {"__class__": "User",'
+                    '"id": "123"}}'
+                    )
         try:
             fs.reload()
         except TypeError:
@@ -126,6 +139,7 @@ class TestReload(unittest.TestCase):
         fs.reload()
         key = f'{obj.__class__.__name__}.{obj.id}'
         self.assertIn(key, fs.all())
+
 
 if __name__ == '__main__':
     unittest.main()
