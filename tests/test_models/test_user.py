@@ -42,5 +42,6 @@ class UserTest(unittest.TestCase):
         u = User()
         self.assertEqual(str(type(u)), "<class 'models.user.User'>")
 
+
 if __name__ == '__main__':
     unittest.main()
