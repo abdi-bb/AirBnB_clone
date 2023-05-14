@@ -50,10 +50,6 @@ class FileStorage():
                     else:
                         class_name = value['__class__']
                     del value['__class__']
-                    '''class_obj = eval(class_name)
-                    obj = class_obj(**value)
-                    FileStorage.new(obj)
-                    '''
                     obj = eval(class_name)(**value)
                     FileStorage.__objects[key] = obj
         except (TypeError, ValueError, FileNotFoundError, NameError):
