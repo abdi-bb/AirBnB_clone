@@ -4,6 +4,7 @@ module: file_storage
 class: FileStorage
 '''
 
+import os
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -25,7 +26,8 @@ class FileStorage():
 
     def new(self, obj):
         '''assigns obj to __objects at key <obj class name>.id'''
-        if obj != None:
+        tmp = None
+        if obj != tmp:
             key = f'{obj.__class__.__name__}.{obj.id}'
             FileStorage.__objects[key] = obj
 
@@ -47,5 +49,5 @@ class FileStorage():
                     value['__class__'] = class_name
                     obj = eval(class_name)(**value)
                     FileStorage.__objects[key] = obj
-        except (ValueError, FileNotFoundError, TypeError):
+        except (ValueError, FileNotFoundError):
             pass
