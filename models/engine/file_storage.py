@@ -25,7 +25,7 @@ class FileStorage():
 
     def new(self, obj):
         '''assigns obj to __objects at key <obj class name>.id'''
-        if obj is not None:
+        if obj != None:
             key = f'{obj.__class__.__name__}.{obj.id}'
             FileStorage.__objects[key] = obj
 
@@ -47,5 +47,5 @@ class FileStorage():
                     value['__class__'] = class_name
                     obj = eval(class_name)(**value)
                     FileStorage.__objects[key] = obj
-        except FileNotFoundError:
+        except (FileNotFoundError, ValueError, NameError):
             pass
