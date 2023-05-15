@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
             key = '{}.{}'.format(class_name, obj_id)
             obj = objects[key]
         except (KeyError, IndexError):
-            print('** no instance found **')
+            '''print('** no instance found **')'''
             return
 
         del objects[key]
