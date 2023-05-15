@@ -8,6 +8,7 @@ This projcet is build on **Ubuntu 20.04 LTS** in **Python 3**
 ## Installation
 ```
 $ git clone https://github.com/..../AirBnB_clone.git
+$ cd AirBnB_clone/
 $ ./console.py
 ```
 ## Showcase
