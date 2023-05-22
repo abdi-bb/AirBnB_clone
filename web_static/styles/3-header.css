@@ -1,5 +1,5 @@
 header {
-	background: white;
+	background-color: white;
 	height: 70px;
 	width: 100%;
 	position: fixed;
@@ -10,5 +10,5 @@ header {
 	height: 60px;
 	width: 142px;
 	align-items: center;
-	background-image: url("../images/logo.png");
+	background-image: url("../images/logo.png") no-repeat;
 }

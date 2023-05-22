@@ -1,12 +1,11 @@
 footer {
-	background: white;
+	background-color: white;
 	height: 60px;
 	width: 100%;
 	position: fixed;
 	bottom: 0;
 	border-top: 1px solid #CCCCCC;
-}
-.footer-content {
-	text-align: center;
-	line-height: 60px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
 }
