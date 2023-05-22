@@ -1,0 +1,64 @@
+.popover {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: #FAFAFA;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+  display: block;
+}
+
+.locations {
+  height: 100%;
+  width: 25%;
+  float: left;
+  border-right: 1px solid #DDDDDD;
+  box-sizing: border-box;
+}
+
+.amenities {
+  height: 100%;
+  width: 25%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.filters h3 {
+  font-weight: 600;
+}
+
+.filters h4 {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.filters button {
+  font-size: 18px;
+  background-color: #FF5A5F;
+  color: #FFFFFF;
+  height: 48px;
+  width: 20%;
+  border: none;
+  border-radius: 4px;
+  margin-right: 30px;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.filters button:hover {
+  opacity: 0.9;
+}
+
