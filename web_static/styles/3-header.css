@@ -10,5 +10,6 @@ header {
 	height: 60px;
 	width: 142px;
 	align-items: center;
-	background-image: url("../images/logo.png") no-repeat;
+	background-image: url("../images/logo.png");
+	background-repeat: no repeat;
 }
